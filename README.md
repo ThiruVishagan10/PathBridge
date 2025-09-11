@@ -38,7 +38,7 @@ The app generates **professional portfolio websites** in multiple formats (**HTM
 
 ## ✨ Features  
 
-- 🎨 **Dynamic Form Interface** — Glassmorphism design with **video background**  
+- 🎨 **Dynamic Form Interface** — Glass morphism design with **video background**  
 - 🔐 **Authentication System** — Cookie-based auth with route protection  
 - ⚡ **Real-time Validation** — Scroll-to-field validation feedback  
 - 📦 **Multi-format Export** — Download portfolios as **HTML** or **Code files**  

@@ -125,7 +125,7 @@ export default function PortfolioForm() {
     console.log("Form Data as JSON:", jsonData);
     
     try {
-      const response = await fetch('http://localhost:8000', {
+      const response = await fetch('https://8fnxbhw0-8000.inc1.devtunnels.ms', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export default function PortfolioForm() {
 
   const downloadCode = async () => {
     try {
-      const response = await fetch('http://localhost:8000/download-txt');
+      const response = await fetch('https://8fnxbhw0-8000.inc1.devtunnels.ms/download-txt');
       const text = await response.text();
       const blob = new Blob([text], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
@@ -173,7 +173,7 @@ export default function PortfolioForm() {
 
   const downloadHTML = async () => {
     try {
-      const response = await fetch('http://localhost:8000/download-html');
+      const response = await fetch('https://8fnxbhw0-8000.inc1.devtunnels.ms/download-html');
       const html = await response.text();
       const blob = new Blob([html], { type: 'text/html' });
       const url = URL.createObjectURL(blob);
