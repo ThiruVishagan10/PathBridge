@@ -18,8 +18,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SocialMedia",
-  description: "A modern social media application powered by Next. js",
+  title: "PathBridge",
+  description: "Alumni-Student Social Platform for mentorship and networking",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
