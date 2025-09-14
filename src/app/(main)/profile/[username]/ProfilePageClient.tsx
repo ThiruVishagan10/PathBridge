@@ -125,8 +125,8 @@ function ProfilePageClient({
     <div className="max-w-3xl mx-auto">
       <div className="grid grid-cols-1 gap-6">
         <div className="w-full max-w-2xl mx-auto">
-          <Card className="bg-card border-0 shadow-lg">
-            <CardContent className="p-8">
+          <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+            <CardContent className="p-8 text-white">
               <div className="flex flex-col items-center text-center space-y-6">
                 <div className="relative">
                   <Avatar className="w-32 h-32 border-4 border-background shadow-xl">
@@ -147,9 +147,9 @@ function ProfilePageClient({
                 
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold">{user.name ?? user.username}</h1>
-                  <p className="text-muted-foreground text-lg">@{user.username}</p>
+                  <p className="text-gray-300 text-lg">@{user.username}</p>
                   {user.bio && (
-                    <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">{user.bio}</p>
+                    <p className="text-gray-300 max-w-md mx-auto leading-relaxed">{user.bio}</p>
                   )}
                 </div>
                 
@@ -169,7 +169,7 @@ function ProfilePageClient({
                   <div className="flex flex-wrap gap-2 justify-center">
                     {user.interests.slice(0, 4).map((interest, index) => (
                       <span key={index} className="bg-secondary/80 hover:bg-secondary px-3 py-1 rounded-full text-sm font-medium transition-colors">
-                        {interest}
+                        {String(interest)}
                       </span>
                     ))}
                   </div>
@@ -210,19 +210,19 @@ function ProfilePageClient({
                 </div>
 
                 {/* PROFILE STATS */}
-                <div className="w-full bg-muted/30 rounded-xl p-6">
+                <div className="w-full bg-white/10 rounded-xl p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">{user._count.following.toLocaleString()}</div>
-                      <div className="text-sm text-muted-foreground font-medium">Following</div>
+                      <div className="text-2xl font-bold text-white">{user._count.following.toLocaleString()}</div>
+                      <div className="text-sm text-gray-300 font-medium">Following</div>
                     </div>
                     <div className="text-center border-x border-border/50">
-                      <div className="text-2xl font-bold text-primary">{user._count.followers.toLocaleString()}</div>
-                      <div className="text-sm text-muted-foreground font-medium">Followers</div>
+                      <div className="text-2xl font-bold text-white">{user._count.followers.toLocaleString()}</div>
+                      <div className="text-sm text-gray-300 font-medium">Followers</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-primary">{user._count.posts.toLocaleString()}</div>
-                      <div className="text-sm text-muted-foreground font-medium">Posts</div>
+                      <div className="text-2xl font-bold text-white">{user._count.posts.toLocaleString()}</div>
+                      <div className="text-sm text-gray-300 font-medium">Posts</div>
                     </div>
                   </div>
                 </div>
@@ -261,9 +261,9 @@ function ProfilePageClient({
                 </div>
 
                 {/* DETAILED PROFILE INFO */}
-                <div className="w-full space-y-3 text-sm bg-card border rounded-xl p-6">
+                <div className="w-full space-y-3 text-sm bg-black/10 border border-white/10 rounded-xl p-6">
                   {user.role && (
-                    <div className="flex items-center text-muted-foreground">
+                    <div className="flex items-center text-gray-300">
                       <UserIcon className="size-4 mr-2" />
                       {user.role === 'STUDENT' ? 'Student' : 'Alumni'}
                     </div>
@@ -310,25 +310,13 @@ function ProfilePageClient({
                       <div className="flex flex-wrap gap-2 ml-6">
                         {user.skills.map((skill, index) => (
                           <span key={index} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
-                            {skill}
+                            {String(skill)}
                           </span>
                         ))}
                       </div>
                     </div>
                   )}
-                  {user.website && (
-                    <div className="flex items-center text-muted-foreground">
-                      <LinkIcon className="size-4 mr-2" />
-                      <a
-                        href={user.website.startsWith("http") ? user.website : `https://${user.website}`}
-                        className="hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {user.website}
-                      </a>
-                    </div>
-                  )}
+
                   {user.linkedinUrl && (
                     <div className="flex items-center text-muted-foreground">
                       <ExternalLinkIcon className="size-4 mr-2" />
@@ -368,26 +356,14 @@ function ProfilePageClient({
                       </a>
                     </div>
                   )}
-                  {user.resumeUrl && (
-                    <div className="flex items-center text-muted-foreground">
-                      <FileTextIcon className="size-4 mr-2" />
-                      <a
-                        href={user.resumeUrl.startsWith("http") ? user.resumeUrl : `https://${user.resumeUrl}`}
-                        className="hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Resume
-                      </a>
-                    </div>
-                  )}
+
                   {user.mentorshipStatus && user.mentorshipStatus !== 'NONE' && (
-                    <div className="flex items-center justify-between p-3 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 rounded-lg border border-amber-200 dark:border-amber-800">
-                      <div className="flex items-center text-amber-800 dark:text-amber-200">
+                    <div className="flex items-center justify-between p-3 bg-black rounded-lg border border-white/20">
+                      <div className="flex items-center text-white">
                         <UserIcon className="size-4 mr-2" />
                         <span className="font-medium">Mentorship</span>
                       </div>
-                      <span className="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-3 py-1 rounded-full text-xs font-medium">
+                      <span className="bg-black text-white px-3 py-1 rounded-full text-xs font-medium border border-white/20">
                         {user.mentorshipStatus === 'SEEKING_MENTOR' && 'Seeking Mentor'}
                         {user.mentorshipStatus === 'OPEN_TO_MENTOR' && 'Open to Mentor'}
                         {user.mentorshipStatus === 'MENTORING' && 'Currently Mentoring'}
@@ -405,19 +381,19 @@ function ProfilePageClient({
         </div>
 
         <Tabs defaultValue="posts" className="w-full">
-          <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
+          <TabsList className="w-full justify-start border-b border-white/10 rounded-none h-auto p-0 bg-transparent">
             <TabsTrigger
               value="posts"
-              className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary
-               data-[state=active]:bg-transparent px-6 font-semibold"
+              className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-white
+               data-[state=active]:bg-transparent px-6 font-semibold text-white"
             >
               <FileTextIcon className="size-4" />
               Posts
             </TabsTrigger>
             <TabsTrigger
               value="likes"
-              className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary
-               data-[state=active]:bg-transparent px-6 font-semibold"
+              className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-white
+               data-[state=active]:bg-transparent px-6 font-semibold text-white"
             >
               <HeartIcon className="size-4" />
               Likes
@@ -429,7 +405,7 @@ function ProfilePageClient({
               {posts.length > 0 ? (
                 posts.map((post) => <PostCard key={post.id} post={post} dbUserId={user.id} />)
               ) : (
-                <div className="text-center py-8 text-muted-foreground">No posts yet</div>
+                <div className="text-center py-8 text-gray-300">No posts yet</div>
               )}
             </div>
           </TabsContent>
@@ -439,18 +415,18 @@ function ProfilePageClient({
               {likedPosts.length > 0 ? (
                 likedPosts.map((post) => <PostCard key={post.id} post={post} dbUserId={user.id} />)
               ) : (
-                <div className="text-center py-8 text-muted-foreground">No liked posts to show</div>
+                <div className="text-center py-8 text-gray-300">No liked posts to show</div>
               )}
             </div>
           </TabsContent>
         </Tabs>
 
         <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
-          <DialogContent className="sm:max-w-[500px]">
+          <DialogContent className="sm:max-w-[500px] bg-black/20 backdrop-blur-md border border-white/10 text-white">
             <DialogHeader>
-              <DialogTitle>Edit Profile</DialogTitle>
+              <DialogTitle className="text-white">Edit Profile</DialogTitle>
             </DialogHeader>
-            <div className="space-y-4 py-4 max-h-[60vh] overflow-y-auto">
+            <div className="space-y-4 py-4 max-h-[60vh] overflow-y-auto" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
               <div className="space-y-2">
                 <Label>Profile Image</Label>
                 <Base64ImageUpload
@@ -568,23 +544,13 @@ function ProfilePageClient({
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>Website</Label>
-                  <Input
-                    value={editForm.website}
-                    onChange={(e) => setEditForm({ ...editForm, website: e.target.value })}
-                    placeholder="yourwebsite.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Portfolio URL</Label>
-                  <Input
-                    value={editForm.portfolioUrl}
-                    onChange={(e) => setEditForm({ ...editForm, portfolioUrl: e.target.value })}
-                    placeholder="portfolio.com"
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label>Portfolio URL</Label>
+                <Input
+                  value={editForm.portfolioUrl}
+                  onChange={(e) => setEditForm({ ...editForm, portfolioUrl: e.target.value })}
+                  placeholder="portfolio.com"
+                />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -606,37 +572,27 @@ function ProfilePageClient({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>Resume URL</Label>
-                  <Input
-                    value={editForm.resumeUrl}
-                    onChange={(e) => setEditForm({ ...editForm, resumeUrl: e.target.value })}
-                    placeholder="Link to your resume"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Mentorship Status</Label>
-                  <Select
-                    value={editForm.mentorshipStatus}
-                    onValueChange={(value) => setEditForm({ ...editForm, mentorshipStatus: value })}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="NONE">None</SelectItem>
-                      <SelectItem value="SEEKING_MENTOR">Seeking Mentor</SelectItem>
-                      <SelectItem value="OPEN_TO_MENTOR">Open to Mentor</SelectItem>
-                      <SelectItem value="MENTORING">Currently Mentoring</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              <div className="space-y-2">
+                <Label>Mentorship Status</Label>
+                <Select
+                  value={editForm.mentorshipStatus}
+                  onValueChange={(value) => setEditForm({ ...editForm, mentorshipStatus: value as any })}
+                >
+                  <SelectTrigger className="bg-black/20 border-white/20 text-white">
+                    <SelectValue placeholder="Select status" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-black/90 border-white/20 text-white">
+                    <SelectItem value="NONE" className="text-white hover:bg-white/10">None</SelectItem>
+                    <SelectItem value="SEEKING_MENTOR" className="text-white hover:bg-white/10">Seeking Mentor</SelectItem>
+                    <SelectItem value="OPEN_TO_MENTOR" className="text-white hover:bg-white/10">Open to Mentor</SelectItem>
+                    <SelectItem value="MENTORING" className="text-white hover:bg-white/10">Currently Mentoring</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             <div className="flex justify-end gap-3">
               <DialogClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline" className="bg-transparent border-white/20 text-white hover:bg-white/10 hover:border-white/30">Cancel</Button>
               </DialogClose>
               <Button onClick={handleEditSubmit}>Save Changes</Button>
             </div>

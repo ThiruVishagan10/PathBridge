@@ -6,11 +6,15 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function signUp(formData: FormData) {
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-  const name = formData.get('name') as string;
-  const institution = formData.get('institution') as string;
-  const role = formData.get('role') as 'STUDENT' | 'ALUMNI';
+  const email = formData.get('email')?.toString()?.trim();
+  const password = formData.get('password')?.toString();
+  const name = formData.get('name')?.toString()?.trim();
+  const institution = formData.get('institution')?.toString()?.trim();
+  const role = formData.get('role')?.toString() as 'STUDENT' | 'ALUMNI';
+
+  if (!email || !password || !name || !institution || !role) {
+    return { error: 'All fields are required' };
+  }
 
   try {
     const existingUser = await prisma.user.findUnique({
@@ -22,7 +26,13 @@ export async function signUp(formData: FormData) {
     }
 
     const hashedPassword = await hashPassword(password);
-    const username = email.split('@')[0];
+    let username = email.split('@')[0];
+    
+    // Ensure username uniqueness
+    const existingUsername = await prisma.user.findUnique({ where: { username } });
+    if (existingUsername) {
+      username = `${username}_${Date.now()}`;
+    }
 
     const user = await prisma.user.create({
       data: {
@@ -51,8 +61,12 @@ export async function signUp(formData: FormData) {
 }
 
 export async function signIn(formData: FormData) {
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
+  const email = formData.get('email')?.toString()?.trim();
+  const password = formData.get('password')?.toString();
+
+  if (!email || !password) {
+    return { error: 'Email and password are required' };
+  }
 
   try {
     const user = await prisma.user.findUnique({
@@ -74,6 +88,7 @@ export async function signIn(formData: FormData) {
 
     return { success: true };
   } catch (error) {
+    // Log error without sensitive data
     return { error: 'Failed to sign in' };
   }
 }

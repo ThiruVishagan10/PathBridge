@@ -25,3 +25,9 @@ export async function requireAlumni() {
   if (user.role !== 'ALUMNI') throw new Error('Alumni access required');
   return user;
 }
+
+export async function requireStudent() {
+  const user = await requireAuth();
+  if (user.role !== 'STUDENT') throw new Error('Student access required');
+  return user;
+}

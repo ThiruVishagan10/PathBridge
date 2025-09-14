@@ -38,7 +38,7 @@ export default function NotificationBell() {
 
   return (
     <Link href="/notifications">
-      <Button variant="ghost" size="sm" className="relative" onClick={handleClick}>
+      <Button variant="ghost" size="sm" className="relative text-white hover:text-gray-300" onClick={handleClick}>
         <BellIcon className="w-4 h-4" />
         <span className="hidden lg:inline ml-2">Notifications</span>
         {unreadCount > 0 && (

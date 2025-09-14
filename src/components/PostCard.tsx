@@ -76,8 +76,8 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null })  
     }
 
     return (
-      <Card className="overflow-hidden">
-      <CardContent className="p-4 sm:p-6">
+      <Card className="overflow-hidden bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+      <CardContent className="p-4 sm:p-6 text-white">
         <div className="space-y-4">
           <div className="flex space-x-3 sm:space-x-4">
             <Link href={`/profile/${post.author.username}`}>

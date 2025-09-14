@@ -183,10 +183,10 @@ export default function MessagingInterface({ initialConversations, currentUser }
   return (
     <div className="h-[calc(100vh-200px)] flex gap-4">
       {/* Conversations Sidebar */}
-      <Card className="w-80 flex flex-col">
+      <Card className="w-80 flex flex-col bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
         <CardHeader className="pb-4">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Messages</h2>
+            <h2 className="text-lg font-semibold text-white">Messages</h2>
             <StartConversationDialog onSelectUser={(user) => handleSelectChat(user.id)} />
           </div>
           <div className="relative">
@@ -199,7 +199,7 @@ export default function MessagingInterface({ initialConversations, currentUser }
             />
           </div>
         </CardHeader>
-        <CardContent className="flex-1 overflow-y-auto p-0">
+        <CardContent className="flex-1 overflow-y-auto p-0 text-white">
           {filteredConversations.length > 0 ? (
             <div className="space-y-1">
               {filteredConversations.map((conv: any) => (
@@ -236,20 +236,20 @@ export default function MessagingInterface({ initialConversations, currentUser }
       </Card>
 
       {/* Chat Area */}
-      <Card className="flex-1 flex flex-col">
+      <Card className="flex-1 flex flex-col bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
         {selectedUser ? (
           <>
-            <CardHeader className="flex-row items-center gap-3 pb-4 border-b">
+            <CardHeader className="flex-row items-center gap-3 pb-4 border-b border-white/10">
               <Avatar className="w-10 h-10">
                 <AvatarImage src={selectedUser.image || "/avatar.png"} />
               </Avatar>
               <div>
-                <h3 className="font-medium">{selectedUser.name}</h3>
-                <p className="text-sm text-muted-foreground">@{selectedUser.username}</p>
+                <h3 className="font-medium text-white">{selectedUser.name}</h3>
+                <p className="text-sm text-gray-300">@{selectedUser.username}</p>
               </div>
             </CardHeader>
             
-            <CardContent className="flex-1 flex flex-col p-0 h-[500px]">
+            <CardContent className="flex-1 flex flex-col p-0 h-[500px] text-white">
               <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
                 {messages.length === 0 ? (
                   <div className="flex items-center justify-center h-full text-muted-foreground">
@@ -286,7 +286,7 @@ export default function MessagingInterface({ initialConversations, currentUser }
                 <div ref={messagesEndRef} />
               </div>
 
-              <div className="p-4 border-t bg-background">
+              <div className="p-4 border-t border-white/10 bg-black/10">
                 <div className="flex gap-2">
                   <Input
                     value={newMessage}
@@ -306,8 +306,8 @@ export default function MessagingInterface({ initialConversations, currentUser }
         ) : (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
-              <h3 className="text-lg font-medium mb-2">Select a conversation</h3>
-              <p className="text-muted-foreground">Choose a conversation to start messaging</p>
+              <h3 className="text-lg font-medium mb-2 text-white">Select a conversation</h3>
+              <p className="text-gray-300">Choose a conversation to start messaging</p>
             </div>
           </div>
         )}

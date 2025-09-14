@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-import { ThemeProvider } from "@/components/theme-provider"
+
 import { AuthProvider } from "@/hooks/useAuth";
 import { Toaster } from "react-hot-toast";
 
@@ -30,17 +30,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <div className="dark">
           <AuthProvider>
             {children}
           </AuthProvider>
           <Toaster/>
-        </ThemeProvider>
+        </div>
       </body>
     </html>
   );

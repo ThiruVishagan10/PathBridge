@@ -129,8 +129,8 @@ export default function ReferPageClient() {
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">Refer Students</h1>
-          <p className="text-muted-foreground">Review assignment reports and refer qualified students</p>
+          <h1 className="text-3xl font-bold text-white">Refer Students</h1>
+          <p className="text-gray-300">Review assignment reports and refer qualified students</p>
         </div>
         <Button onClick={() => setShowProjectModal(true)}>
           <Plus className="w-4 h-4 mr-2" />
@@ -140,37 +140,37 @@ export default function ReferPageClient() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card>
-          <CardContent className="p-6">
+        <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+          <CardContent className="p-6 text-white">
             <div className="flex items-center gap-4">
-              <Briefcase className="w-8 h-8 text-blue-500" />
+              <Briefcase className="w-8 h-8 text-blue-400" />
               <div>
                 <p className="text-2xl font-bold">{stats.assignmentsPosted}</p>
-                <p className="text-sm text-muted-foreground">Assignments Posted</p>
+                <p className="text-sm text-gray-300">Assignments Posted</p>
               </div>
             </div>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardContent className="p-6">
+        <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+          <CardContent className="p-6 text-white">
             <div className="flex items-center gap-4">
-              <Users className="w-8 h-8 text-green-500" />
+              <Users className="w-8 h-8 text-green-400" />
               <div>
                 <p className="text-2xl font-bold">{stats.submissionsReceived}</p>
-                <p className="text-sm text-muted-foreground">Submissions Received</p>
+                <p className="text-sm text-gray-300">Submissions Received</p>
               </div>
             </div>
           </CardContent>
         </Card>
         
-        <Card>
-          <CardContent className="p-6">
+        <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+          <CardContent className="p-6 text-white">
             <div className="flex items-center gap-4">
-              <CheckCircle className="w-8 h-8 text-purple-500" />
+              <CheckCircle className="w-8 h-8 text-purple-400" />
               <div>
                 <p className="text-2xl font-bold">{stats.studentsReferred}</p>
-                <p className="text-sm text-muted-foreground">Students Referred</p>
+                <p className="text-sm text-gray-300">Students Referred</p>
               </div>
             </div>
           </CardContent>
@@ -178,12 +178,12 @@ export default function ReferPageClient() {
       </div>
 
       {/* Assignment History */}
-      <Card>
+      <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
         <CardHeader>
-          <CardTitle>Assignment History</CardTitle>
-          <p className="text-sm text-muted-foreground">Track your posted assignments and student progress</p>
+          <CardTitle className="text-white">Assignment History</CardTitle>
+          <p className="text-sm text-gray-300">Track your posted assignments and student progress</p>
         </CardHeader>
-        <CardContent>
+        <CardContent className="text-white">
           <Tabs defaultValue="assignments">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="assignments">Posted Assignments</TabsTrigger>

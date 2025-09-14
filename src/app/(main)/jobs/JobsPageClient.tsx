@@ -60,24 +60,24 @@ export default function JobsPageClient({ assignments }: JobsPageClientProps) {
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Job Assignments</h1>
-        <p className="text-muted-foreground">Complete assignments from alumni to showcase your skills</p>
+        <h1 className="text-3xl font-bold text-white">Job Assignments</h1>
+        <p className="text-gray-300">Complete assignments from alumni to showcase your skills</p>
       </div>
 
       <div className="grid gap-6">
         {assignments.length === 0 ? (
-          <Card>
-            <CardContent className="p-8 text-center">
-              <p className="text-muted-foreground">No assignments available at the moment.</p>
+          <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+            <CardContent className="p-8 text-center text-white">
+              <p className="text-gray-300">No assignments available at the moment.</p>
             </CardContent>
           </Card>
         ) : (
           assignments.map((assignment) => (
-            <Card key={assignment.id} className="hover:shadow-lg transition-shadow">
+            <Card key={assignment.id} className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl hover:shadow-2xl transition-shadow">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle className="text-xl">{assignment.title}</CardTitle>
+                    <CardTitle className="text-xl text-white">{assignment.title}</CardTitle>
                     <div className="flex items-center gap-4 mt-2 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <User className="w-4 h-4" />
@@ -104,8 +104,8 @@ export default function JobsPageClient({ assignments }: JobsPageClientProps) {
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm mb-4">{assignment.description}</p>
+              <CardContent className="text-white">
+                <p className="text-sm mb-4 text-gray-300">{assignment.description}</p>
                 
                 {assignment.skillsRequired && assignment.skillsRequired.length > 0 && (
                   <div className="mb-4">

@@ -99,16 +99,16 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
         {/* Main Content */}
         <div className="lg:col-span-3">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">My Students</h1>
-            <p className="text-muted-foreground">Students from your institution</p>
+            <h1 className="text-3xl font-bold mb-2 text-white">My Students</h1>
+            <p className="text-gray-300">Students from your institution</p>
           </div>
 
           {/* Filters */}
-          <Card className="mb-6">
+          <Card className="mb-6 bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
             <CardHeader>
-              <CardTitle>Filters & Sorting</CardTitle>
+              <CardTitle className="text-white">Filters & Sorting</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-white">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
                 <Input
                   placeholder="Search students"
@@ -192,13 +192,13 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
                   setSortBy(value);
                   handleFilter();
                 }}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-black/20 border-white/20 text-white">
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="name">Name</SelectItem>
-                    <SelectItem value="recent">Recent Activity</SelectItem>
-                    <SelectItem value="followers">Followers</SelectItem>
+                  <SelectContent className="bg-black/90 border-white/20 text-white">
+                    <SelectItem value="name" className="text-white hover:bg-white/10">Name</SelectItem>
+                    <SelectItem value="recent" className="text-white hover:bg-white/10">Recent Activity</SelectItem>
+                    <SelectItem value="followers" className="text-white hover:bg-white/10">Followers</SelectItem>
                   </SelectContent>
                 </Select>
                 <Button onClick={handleFilter}>Apply Filters</Button>
@@ -208,12 +208,12 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
 
           {/* View Toggle */}
           <Tabs defaultValue="grid" className="mb-6">
-            <TabsList>
-              <TabsTrigger value="grid" className="flex items-center gap-2">
+            <TabsList className="bg-black/20 border-white/10">
+              <TabsTrigger value="grid" className="flex items-center gap-2 text-white data-[state=active]:bg-white/10">
                 <LayoutGridIcon className="w-4 h-4" />
                 Grid View
               </TabsTrigger>
-              <TabsTrigger value="table" className="flex items-center gap-2">
+              <TabsTrigger value="table" className="flex items-center gap-2 text-white data-[state=active]:bg-white/10">
                 <TableIcon className="w-4 h-4" />
                 Table View
               </TabsTrigger>
@@ -223,8 +223,8 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
             <TabsContent value="grid">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredStudents.map((student) => (
-                  <Card key={student.id} className="hover:shadow-lg transition-shadow">
-                    <CardContent className="pt-6">
+                  <Card key={student.id} className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl hover:shadow-2xl transition-shadow">
+                    <CardContent className="pt-6 text-white">
                       <div className="flex flex-col items-center text-center">
                         <Link href={`/profile/${student.username}`} className="flex flex-col items-center">
                           <Avatar className="w-16 h-16 mb-4">
@@ -290,8 +290,8 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
 
             {/* Table View */}
             <TabsContent value="table">
-              <Card>
-                <CardContent className="p-0">
+              <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+                <CardContent className="p-0 text-white">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead className="border-b">
@@ -362,7 +362,7 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
 
           {filteredStudents.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">No students found matching your criteria.</p>
+              <p className="text-gray-300">No students found matching your criteria.</p>
             </div>
           )}
         </div>
@@ -371,14 +371,14 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
         <div className="lg:col-span-1">
           <div className="space-y-6 sticky top-6">
             {/* Analytics */}
-            <Card>
+            <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-white">
                   <TrendingUpIcon className="w-5 h-5" />
                   Analytics
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-4 text-white">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <UsersIcon className="w-4 h-4 text-muted-foreground" />
@@ -404,11 +404,11 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
             </Card>
 
             {/* Mutual Students */}
-            <Card>
+            <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
               <CardHeader>
-                <CardTitle>Mutual Students</CardTitle>
+                <CardTitle className="text-white">Mutual Students</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-white">
                 <div className="space-y-3 max-h-64 overflow-y-auto">
                   {filteredStudents.filter(student => student.followers && student.followers.length > 0).slice(0, 10).map((student) => (
                     <div key={student.id} className="flex items-center gap-2">
@@ -435,9 +435,9 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
 
       {/* Student Detail Modal */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-black/20 backdrop-blur-md border border-white/10 text-white">
           <DialogHeader>
-            <DialogTitle>Student Profile</DialogTitle>
+            <DialogTitle className="text-white">Student Profile</DialogTitle>
           </DialogHeader>
           
           {selectedStudent && (

@@ -14,8 +14,8 @@ async function Sidebar() {
 
   return (
     <div className="sticky top-20">
-      <Card>
-        <CardContent className="pt-6">
+      <Card className="bg-black/20 backdrop-blur-md border border-white/10">
+        <CardContent className="pt-6 text-white">
           <div className="flex flex-col items-center text-center">
             <Link
               href={`/profile/${user.username}`}
@@ -135,11 +135,11 @@ export default Sidebar;
 
 const UnAuthenticatedSidebar = () => (
   <div className="sticky top-20">
-    <Card>
+    <Card className="bg-black/20 backdrop-blur-md border border-white/10">
       <CardHeader>
-        <CardTitle className="text-center text-xl font-semibold">Welcome Back!</CardTitle>
+        <CardTitle className="text-center text-xl font-semibold text-white">Welcome Back!</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="text-white">
         <p className="text-center text-muted-foreground mb-4">
           Login to access your profile and connect with others.
         </p>

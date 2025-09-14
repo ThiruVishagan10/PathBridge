@@ -51,19 +51,19 @@ function NotificationPage() {
 
   return (
     <div className="space-y-4">
-      <Card>
-        <CardHeader className="border-b">
+      <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
+        <CardHeader className="border-b border-white/10">
           <div className="flex items-center justify-between">
-            <CardTitle>Notifications</CardTitle>
-            <span className="text-sm text-muted-foreground">
+            <CardTitle className="text-white">Notifications</CardTitle>
+            <span className="text-sm text-gray-300">
               {notifications.filter((n) => !n.read).length} unread
             </span>
           </div>
         </CardHeader>
-        <CardContent className="p-0">
+        <CardContent className="p-0 text-white">
           <ScrollArea className="h-[calc(100vh-12rem)]">
             {notifications.length === 0 ? (
-              <div className="p-4 text-center text-muted-foreground">No notifications yet</div>
+              <div className="p-4 text-center text-gray-300">No notifications yet</div>
             ) : (
               notifications.map((notification) => (
                 <div

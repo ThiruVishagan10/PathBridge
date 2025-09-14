@@ -12,8 +12,8 @@ export default function MessageNavLink() {
       href="/messages" 
       onClick={markAsRead}
       className={cn(
-        "text-sm font-medium hover:text-primary transition-colors relative",
-        hasNewMessages && "text-primary font-semibold",
+        "text-sm font-medium text-white hover:text-gray-300 transition-colors relative",
+        hasNewMessages && "text-blue-400 font-semibold",
         isBlinking && "animate-pulse"
       )}
     >

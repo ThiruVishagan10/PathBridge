@@ -19,20 +19,20 @@ interface Meeting {
   type: 'upcoming' | 'past';
   status: 'requested' | 'confirmed' | 'completed' | 'cancelled';
   mentor?: {
-    name: string;
+    name: string | null;
     username: string;
   };
 }
 
 interface Mentor {
   id: string;
-  name: string;
+  name: string | null;
   username: string;
-  image?: string;
-  currentPosition?: string;
-  currentOrganization?: string;
-  location?: string;
-  linkedinUrl?: string;
+  image?: string | null;
+  currentPosition?: string | null;
+  currentOrganization?: string | null;
+  location?: string | null;
+  linkedinUrl?: string | null;
   email?: string;
   mentorshipStartDate?: Date;
   mentorshipStatus: string;
@@ -105,8 +105,8 @@ export default function MyMentorClient({ mentor, meetings, availableMentors }: M
         {/* Main Content - Alumni List */}
         <div className="lg:col-span-3">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold mb-2">Available Mentors</h1>
-            <p className="text-muted-foreground">Alumni from your institution available for mentorship</p>
+            <h1 className="text-3xl font-bold mb-2 text-white">Available Mentors</h1>
+            <p className="text-gray-300">Alumni from your institution available for mentorship</p>
           </div>
 
           {/* Search */}
@@ -121,8 +121,8 @@ export default function MyMentorClient({ mentor, meetings, availableMentors }: M
           {/* Alumni List */}
           <div className="space-y-4">
             {filteredMentors.map((availableMentor) => (
-              <Card key={availableMentor.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-4">
+              <Card key={availableMentor.id} className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl hover:shadow-2xl transition-shadow">
+                <CardContent className="p-4 text-white">
                   <div className="flex items-center gap-4">
                     <Link href={`/profile/${availableMentor.username}`}>
                       <Avatar className="w-12 h-12 cursor-pointer hover:opacity-80">
@@ -175,11 +175,11 @@ export default function MyMentorClient({ mentor, meetings, availableMentors }: M
 
         {/* Right Sidebar - Schedule Form */}
         <div className="lg:col-span-1">
-          <Card className="sticky top-6">
+          <Card className="sticky top-6 bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
             <CardHeader>
-              <CardTitle>Mentor Actions</CardTitle>
+              <CardTitle className="text-white">Mentor Actions</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 text-white">
               {selectedMentor ? (
                 <>
                   <div className="flex items-center gap-2 p-2 bg-muted rounded">
@@ -267,11 +267,11 @@ export default function MyMentorClient({ mentor, meetings, availableMentors }: M
     <div className="max-w-6xl mx-auto p-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-1">
-          <Card>
+          <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
             <CardHeader>
-              <CardTitle>My Mentor</CardTitle>
+              <CardTitle className="text-white">My Mentor</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-6 text-white">
               <div className="flex flex-col items-center text-center">
                 <Avatar className="w-24 h-24 mb-4">
                   <AvatarImage src={mentor.image || '/avatar.png'} />
@@ -342,9 +342,9 @@ export default function MyMentorClient({ mentor, meetings, availableMentors }: M
         </div>
 
         <div className="lg:col-span-2 space-y-6">
-          <Card>
+          <Card className="bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle>Upcoming Meetings</CardTitle>
+              <CardTitle className="text-white">Upcoming Meetings</CardTitle>
               <div className="flex gap-2">
                 <Dialog open={showScheduleModal} onOpenChange={setShowScheduleModal}>
                   <DialogTrigger asChild>
@@ -396,7 +396,7 @@ export default function MyMentorClient({ mentor, meetings, availableMentors }: M
                 </Button>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-white">
               {upcomingMeetings.length > 0 ? (
                 <div className="space-y-3">
                   {upcomingMeetings.map((meeting) => (
