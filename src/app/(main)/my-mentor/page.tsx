@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import MyMentorClient from './MyMentorClient';
 import { getMyMentor, getMeetings, getAvailableMentors } from '@/actions/student.action';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MyMentorPage() {
   const user = await getCurrentUser();
   

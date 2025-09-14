@@ -2,6 +2,8 @@ import { requireStudent } from "@/lib/server-auth";
 import { redirect } from "next/navigation";
 import TemplateSelector from "@/components/TemplateSelector";
 
+export const dynamic = 'force-dynamic';
+
 export default async function PortfolioTemplatesPage() {
   try {
     await requireStudent();

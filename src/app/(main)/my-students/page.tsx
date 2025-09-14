@@ -3,6 +3,8 @@ import { getCurrentUser } from '@/lib/server-auth';
 import { redirect } from 'next/navigation';
 import MyStudentsClient from './MyStudentsClient';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MyStudentsPage() {
   const user = await getCurrentUser();
   
