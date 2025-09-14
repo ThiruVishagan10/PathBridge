@@ -88,7 +88,8 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
     totalPosts: students.reduce((sum, s) => sum + s._count.posts, 0),
     avgFollowers: Math.round(students.reduce((sum, s) => sum + s._count.followers, 0) / students.length || 0),
     topSkills: students.flatMap(s => s.skills || []).reduce((acc: any, skill) => {
-      acc[skill] = (acc[skill] || 0) + 1;
+      const skillStr = String(skill);
+      acc[skillStr] = (acc[skillStr] || 0) + 1;
       return acc;
     }, {})
   };
@@ -256,7 +257,7 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
                           <div className="flex flex-wrap gap-1 mt-3 justify-center">
                             {student.skills.slice(0, 3).map((skill, index) => (
                               <Badge key={index} variant="secondary" className="text-xs">
-                                {skill}
+                                {String(skill)}
                               </Badge>
                             ))}
                           </div>
@@ -328,7 +329,7 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
                                   <>
                                     {student.skills.slice(0, 2).map((skill, index) => (
                                       <Badge key={index} variant="secondary" className="text-xs">
-                                        {skill}
+                                        {String(skill)}
                                       </Badge>
                                     ))}
                                     {student.skills.length > 2 && (
@@ -498,7 +499,7 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
                   <div className="flex flex-wrap gap-2">
                     {selectedStudent.skills.map((skill, index) => (
                       <Badge key={index} variant="secondary">
-                        {skill}
+                        {String(skill)}
                       </Badge>
                     ))}
                   </div>
@@ -511,36 +512,8 @@ export default function MyStudentsClient({ students }: MyStudentsClientProps) {
                   <div className="flex flex-wrap gap-2">
                     {selectedStudent.interests.map((interest, index) => (
                       <Badge key={index} variant="outline">
-                        {interest}
+                        {String(interest)}
                       </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {selectedStudent.projects && Array.isArray(selectedStudent.projects) && selectedStudent.projects.length > 0 && (
-                <div>
-                  <h3 className="font-semibold mb-2">Projects</h3>
-                  <div className="space-y-2">
-                    {selectedStudent.projects.map((project: any, index) => (
-                      <div key={index} className="p-3 border rounded-lg">
-                        <h4 className="font-medium">{project.title || `Project ${index + 1}`}</h4>
-                        <p className="text-sm text-muted-foreground">{project.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {selectedStudent.achievements && Array.isArray(selectedStudent.achievements) && selectedStudent.achievements.length > 0 && (
-                <div>
-                  <h3 className="font-semibold mb-2">Achievements</h3>
-                  <div className="space-y-2">
-                    {selectedStudent.achievements.map((achievement: any, index) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <StarIcon className="w-4 h-4 text-yellow-500" />
-                        <span className="text-sm">{achievement.title || achievement}</span>
-                      </div>
                     ))}
                   </div>
                 </div>

@@ -56,7 +56,7 @@ async function Sidebar() {
               <div className="mt-2 flex flex-wrap gap-1 justify-center">
                 {user.interests.slice(0, 3).map((interest, index) => (
                   <span key={index} className="bg-secondary px-2 py-1 rounded-md text-xs">
-                    {interest}
+                    {String(interest)}
                   </span>
                 ))}
               </div>

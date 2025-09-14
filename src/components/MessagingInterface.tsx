@@ -24,7 +24,7 @@ type Message = {
     username: string;
     image: string | null;
   };
-  receiver: {
+  receiver?: {
     id: string;
     name: string | null;
     username: string;
@@ -51,6 +51,8 @@ export default function MessagingInterface({ initialConversations, currentUser }
   const [conversations, setConversations] = useState(() => {
     return initialConversations.reduce((acc, message) => {
       const otherUser = message.senderId === currentUser?.id ? message.receiver : message.sender;
+      if (!otherUser) return acc;
+      
       const key = otherUser.id;
       
       if (!acc[key] || new Date(message.createdAt) > new Date(acc[key].createdAt)) {
@@ -161,7 +163,7 @@ export default function MessagingInterface({ initialConversations, currentUser }
         setNewMessage("");
         
         // Update conversations list with new message
-        setConversations(prev => ({
+        setConversations((prev: any) => ({
           ...prev,
           [selectedChat]: {
             ...newMsg,

@@ -44,7 +44,7 @@ export default function JobsPageClient({ assignments }: JobsPageClientProps) {
     setLoadingSubmissions(true);
     const result = await getAssignmentSubmissions(assignmentId);
     if (result.success) {
-      setSubmissions(result.submissions);
+      setSubmissions(result.submissions || []);
       setSelectedAssignment({ id: assignmentId, title: assignmentTitle });
       setShowSubmissionsView(true);
     } else {

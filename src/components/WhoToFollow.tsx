@@ -40,7 +40,7 @@ async function WhoToFollow() {
                     <div className="flex flex-wrap gap-1 mt-1">
                       {user.interests.slice(0, 2).map((interest, index) => (
                         <span key={index} className="bg-secondary px-1 py-0.5 rounded text-xs">
-                          {interest}
+                          {String(interest)}
                         </span>
                       ))}
                     </div>

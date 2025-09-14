@@ -10,8 +10,7 @@ export async function getAvailableMentors() {
 
     const mentors = await prisma.user.findMany({
       where: {
-        role: 'ALUMNI',
-        institution: user.institution
+        role: 'ALUMNI'
       },
       select: {
         id: true,
@@ -55,7 +54,6 @@ export async function getMyMentor() {
     const mentor = await prisma.user.findFirst({
       where: {
         role: 'ALUMNI',
-        institution: user.institution,
         mentorshipStatus: 'MENTORING'
       },
       select: {

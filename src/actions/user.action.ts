@@ -143,3 +143,41 @@ export async function getRandomUsers() {
     return [];
   }
 }
+
+export async function searchUsers(query: string) {
+  try {
+    const user = await getCurrentUser();
+    if (!user) return [];
+
+    const users = await prisma.user.findMany({
+      where: {
+        AND: [
+          { id: { not: user.id } },
+          {
+            OR: [
+              { name: { contains: query, mode: 'insensitive' } },
+              { username: { contains: query, mode: 'insensitive' } },
+            ],
+          },
+        ],
+      },
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        image: true,
+        _count: {
+          select: {
+            followers: true,
+            following: true,
+          },
+        },
+      },
+      take: 10,
+    });
+
+    return users;
+  } catch (error) {
+    return [];
+  }
+}

@@ -58,7 +58,7 @@ export default function MyMentorClient({ mentor, meetings, availableMentors }: M
   const pastMeetings = meetings.filter(m => m.type === 'past');
   const mutualMentors = availableMentors.filter(m => m.followers && m.followers.length > 0);
   const filteredMentors = availableMentors.filter(mentor => 
-    mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    mentor.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     mentor.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
     mentor.currentPosition?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     mentor.currentOrganization?.toLowerCase().includes(searchQuery.toLowerCase())
